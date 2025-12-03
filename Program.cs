@@ -1,125 +1,10 @@
-﻿using System;
-using System.Threading;
+﻿
+
 using System.Runtime.InteropServices;
-
-class Boxer
-{
-    public string Name { get; private set; }
-    public int MaxHP { get; private set; }
-    public int HP { get; private set; }
-    public int Stamina { get; private set; }
-    public bool IsStunned { get; private set; }
-    public bool IsBlocking { get; private set; }
-
-    private int stunTurns = 0;
-    private readonly Random rnd;
-
-    public Boxer(string name, Random random, int maxHp = 120, int startStamina = 60)
-    {
-        Name = name;
-        rnd = random;
-        MaxHP = maxHp;
-        HP = maxHp;
-        Stamina = startStamina;
-        IsStunned = false;
-        IsBlocking = false;
-    }
-
-    public bool IsAlive => HP > 0;
-
-    public void StartBlock()
-    {
-        if (Stamina >= 5)
-        {
-            Stamina -= 5;
-            IsBlocking = true;
-        }
-    }
-
-    public void EndBlock() => IsBlocking = false;
-
-    public void Rest()
-    {
-        Stamina += 18;
-        if (Stamina > 100) Stamina = 100;
-    }
-
-    public void TakeDamage(int dmg)
-    {
-        HP -= dmg;
-        if (HP < 0) HP = 0;
-    }
-
-    public void ApplyStun()
-    {
-        IsStunned = true;
-        stunTurns = 1;
-    }
-
-    public void ReduceStun()
-    {
-        if (IsStunned)
-        {
-            stunTurns--;
-            if (stunTurns <= 0)
-                IsStunned = false;
-        }
-    }
-
-    public (bool Hit, int Damage, bool KO) Attack(string type, Boxer enemy)
-    {
-        int staminaCost;
-        int minDamage;
-        int maxDamage;
-        int hitChance;
-
-        switch (type)
-        {
-            case "uppercut":
-                staminaCost = 18; minDamage = 16; maxDamage = 32; hitChance = 55;
-                break;
-
-            case "hook":
-                staminaCost = 12; minDamage = 10; maxDamage = 20; hitChance = 70;
-                break;
-
-            default:
-                staminaCost = 8; minDamage = 6; maxDamage = 12; hitChance = 85;
-                break;
-        }
-
-        if (Stamina < staminaCost) return (false, 0, false);
-
-        Stamina -= staminaCost;
-
-        if (rnd.Next(100) >= hitChance)
-        {
-            return (false, 0, false);
-        }
-
-        int dmg = rnd.Next(minDamage, maxDamage + 1);
-
-        if (enemy.IsBlocking)
-        {
-            dmg /= 2;
-            enemy.EndBlock();
-        }
-
-        bool knockout = dmg >= (int)(enemy.MaxHP * 0.3);
-        if (knockout) enemy.ApplyStun();
-
-        enemy.TakeDamage(dmg);
-
-        return (true, dmg, knockout);
-    }
-
-    public override string ToString() => $"{Name} | HP: {HP}/{MaxHP} | STA: {Stamina}";
-}
 
 class Program
 {
     static readonly Random rnd = new Random();
-
     static readonly string[] leftIdle = new[] { "  O  ", " /|\\ ", " / \\ " };
     static readonly string[] leftPunch = new[] { "  O  ", " -|> ", " / \\ " };
     static readonly string[] leftHit = new[] { "  O  ", " -|- ", " / \\ " };
@@ -175,40 +60,11 @@ class Program
 
     static void TryClear()
     {
-        try { Console.Clear(); } catch { }
+    try { Console.Clear(); } catch { }
+       
     }
 
-    static void ShowArena(Boxer p1, Boxer p2)
-    {
-        TryClear();
-        int width = 70;
-        try { width = Math.Min(Console.WindowWidth - 4, 100); } catch { }
-
-        int inner = width - 4;
-        int dashCount = (inner - 5) / 2;
-        string arenaLine = "+" + new string('-', dashCount) + " ARENA " + new string('-', dashCount) + "+";
-        
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(arenaLine);
-        Console.ResetColor();
-
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("| " + p1.Name.PadRight(inner / 2) + p2.Name.PadLeft(inner - inner / 2) + " |");
-        Console.ResetColor();
-        
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("| " + ($"HP:{p1.HP}/{p1.MaxHP} STA:{p1.Stamina}").PadRight(inner / 2) + ($"HP:{p2.HP}/{p2.MaxHP} STA:{p2.Stamina}").PadLeft(inner - inner / 2) + " |");
-        Console.ResetColor();
-        
-        Console.WriteLine("|" + new string(' ', inner + 2) + "|");
-        
-        RenderBoxers(leftIdle, rightIdle, inner);
-        
-        Console.WriteLine("|" + new string(' ', inner + 2) + "|");
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(arenaLine);
-        Console.ResetColor();
-    }
+    
 
     static void RenderBoxers(string[] left, string[] right, int innerWidth)
     {
@@ -228,57 +84,7 @@ class Program
         }
     }
 
-    static void ShowArenaWithActions(Boxer p1, Boxer p2, string a1, string a2, bool h1, bool h2)
-    {
-        TryClear();
-        int width = 70;
-        try { width = Math.Min(Console.WindowWidth - 4, 100); } catch { }
-
-        int inner = width - 4;  
-        
-        
-        // Yellow header box
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("+" + new string('=', width - 2) + "+");
-        string title = "🥊 KAMPEN TAGER FORM 🥊";
-
-        int padding = (inner - title.Length) / 2;
-        Console.WriteLine("| " + new string(' ', padding) + title + new string(' ', inner - padding - title.Length) + " |");
-        Console.WriteLine("+" + new string('=', width - 2) + "+");
-        Console.ResetColor();
-        
-        Console.WriteLine();
-        
-        int dashCount = (inner - 5) / 2;
-        string arenaLine = "+" + new string('-', dashCount) + " ARENA " + new string('-', dashCount) + "+";
-        
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(arenaLine);
-        Console.ResetColor();
-
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine("| " + p1.Name.PadRight(inner / 2) + p2.Name.PadLeft(inner - inner / 2) + " |");
-        Console.ResetColor();
-        
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.WriteLine("| " + ($"HP:{p1.HP}/{p1.MaxHP} STA:{p1.Stamina}").PadRight(inner / 2) + ($"HP:{p2.HP}/{p2.MaxHP} STA:{p2.Stamina}").PadLeft(inner - inner / 2) + " |");
-        Console.ResetColor();
-        
-        Console.WriteLine("|" + new string(' ', inner + 2) + "|");
-
-        string[] lArt = leftIdle;
-        if (a1 == "jab" || a1 == "hook" || a1 == "uppercut") lArt = h1 ? leftHit : leftPunch;
-
-        string[] rArt = rightIdle;
-        if (a2 == "jab" || a2 == "hook" || a2 == "uppercut") rArt = h2 ? rightHit : rightPunch;
-
-        RenderBoxers(lArt, rArt, inner);
-
-        Console.WriteLine("|" + new string(' ', inner + 2) + "|");
-        Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(arenaLine);
-        Console.ResetColor();
-    }
+   
 
     static string GetAction(Boxer b, bool vsCpu)
     {
@@ -357,7 +163,7 @@ class Program
             Console.WriteLine("╚════════════════════════════════════════════════╝");
             Console.ResetColor();
             Console.WriteLine();
-            ShowArena(p1, p2);
+            Match.ShowArena(p1, p2); // Changed to Match.
 
             Console.WriteLine($"\n╔══ Runde {round} ══╗");
             Console.WriteLine("Begge boksere vælger handling...\n");
@@ -445,8 +251,8 @@ class Program
             {
                 result2 = p2.Attack(action2, p1);
             }
-
-            ShowArenaWithActions(p1, p2, action1, action2, result1.Hit, result2.Hit);
+            
+            Match.ShowArenaWithActions(p1, p2, action1, action2, result1.Hit, result2.Hit);
 
             if (result1.Hit)
             {
