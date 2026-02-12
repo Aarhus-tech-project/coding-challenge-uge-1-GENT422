@@ -1,0 +1,29 @@
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\boksekamp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\boksekamp.AssemblyInfoInputs.cache
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\boksekamp.AssemblyInfo.cs
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\boksekamp.csproj.CoreCompileInputs.cache
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\bin\Debug\net10.0\boksekamp.exe
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\bin\Debug\net10.0\boksekamp.deps.json
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\bin\Debug\net10.0\boksekamp.runtimeconfig.json
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\bin\Debug\net10.0\boksekamp.dll
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\bin\Debug\net10.0\boksekamp.pdb
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\boksekamp.dll
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\refint\boksekamp.dll
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\boksekamp.pdb
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\boksekamp.genruntimeconfig.cache
+C:\Users\Gentian\OneDrive - Tradium\Skrivebord\cv - 25\Boksekamp\boksekamp 2\boksekamp\obj\Debug\net10.0\ref\boksekamp.dll
+C:\dev\coding-challenge-uge-1-GENT422\bin\Debug\net10.0\boksekamp.exe
+C:\dev\coding-challenge-uge-1-GENT422\bin\Debug\net10.0\boksekamp.deps.json
+C:\dev\coding-challenge-uge-1-GENT422\bin\Debug\net10.0\boksekamp.runtimeconfig.json
+C:\dev\coding-challenge-uge-1-GENT422\bin\Debug\net10.0\boksekamp.dll
+C:\dev\coding-challenge-uge-1-GENT422\bin\Debug\net10.0\boksekamp.pdb
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.GeneratedMSBuildEditorConfig.editorconfig
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.AssemblyInfoInputs.cache
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.AssemblyInfo.cs
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.csproj.CoreCompileInputs.cache
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.sourcelink.json
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.dll
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\refint\boksekamp.dll
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.pdb
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\boksekamp.genruntimeconfig.cache
+C:\dev\coding-challenge-uge-1-GENT422\obj\Debug\net10.0\ref\boksekamp.dll
